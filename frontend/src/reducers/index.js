@@ -5,7 +5,7 @@ import { RECEIVE_ALL_POSTS, RECEIVE_ALL_CATEGORIES } from '../actions';
 function posts(state = [], action) {
   switch (action.type) {
     case RECEIVE_ALL_POSTS:
-      return action.posts;
+      return action.data;
     default:
       return state;
   }
