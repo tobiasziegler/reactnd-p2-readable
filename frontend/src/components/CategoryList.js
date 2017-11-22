@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 
 class CategoryList extends Component {
@@ -11,7 +12,9 @@ class CategoryList extends Component {
         {categories &&
           categories.length > 0 &&
           categories.map(category => (
-            <Menu.Item key={category.path}>{category.name}</Menu.Item>
+            <Menu.Item key={category.path} as={Link} to={`/${category.path}`}>
+              {category.name}
+            </Menu.Item>
           ))}
       </Menu>
     );

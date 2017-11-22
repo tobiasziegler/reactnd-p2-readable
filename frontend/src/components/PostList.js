@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Item } from 'semantic-ui-react';
 import moment from 'moment';
 
@@ -13,7 +14,9 @@ class PostList extends Component {
           posts.map(post => (
             <Item key={post.id}>
               <Item.Content>
-                <Item.Header>{post.title}</Item.Header>
+                <Item.Header as={Link} to={`/${post.category}/${post.id}`}>
+                  {post.title}
+                </Item.Header>
                 <Item.Meta>
                   {moment(post.timestamp).fromNow()} by {post.author} in{' '}
                   {post.category}

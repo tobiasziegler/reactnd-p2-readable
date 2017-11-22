@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import DefaultView from './DefaultView';
 import CategoryView from './CategoryView';
 import PostDetailView from './PostDetailView';
@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header as="h1" block>
-          Readable
+          <Link to="/">Readable</Link>
         </Header>
         <Route exact path="/" component={DefaultView} />
         <Route exact path="/:category" component={CategoryView} />
