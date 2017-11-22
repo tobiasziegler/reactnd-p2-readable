@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllPosts } from '../actions';
+import { getAllPosts, getAllCategories } from '../actions';
 import { Item } from 'semantic-ui-react';
 import moment from 'moment';
 
 class DefaultView extends Component {
   componentDidMount = () => {
     this.props.dispatch(getAllPosts());
+    this.props.dispatch(getAllCategories());
   };
 
   render() {
@@ -41,8 +42,8 @@ class DefaultView extends Component {
   }
 }
 
-function mapStateToProps({ posts }) {
-  return { posts };
+function mapStateToProps({ posts, categories }) {
+  return { posts, categories };
 }
 
 export default connect(mapStateToProps)(DefaultView);

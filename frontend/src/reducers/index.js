@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { RECEIVE_ALL_POSTS } from '../actions';
+import { RECEIVE_ALL_POSTS, RECEIVE_ALL_CATEGORIES } from '../actions';
 
 function posts(state = [], action) {
   switch (action.type) {
@@ -11,4 +11,13 @@ function posts(state = [], action) {
   }
 }
 
-export default combineReducers({ posts: posts });
+function categories(state = [], action) {
+  switch (action.type) {
+    case RECEIVE_ALL_CATEGORIES:
+      return action.data.categories;
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({ posts: posts, categories: categories });

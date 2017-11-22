@@ -7,3 +7,9 @@ export const getAllPosts = () =>
   fetch(`${server}/posts`, { headers: authHeader }).then(response =>
     response.json()
   );
+
+// Get all of the categories available for the app.
+export const getAllCategories = () =>
+  fetch(`${server}/categories`, { headers: authHeader }).then(response =>
+    response.json()
+  );
