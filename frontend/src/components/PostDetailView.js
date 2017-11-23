@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllPosts } from '../actions';
 import { Grid, Item } from 'semantic-ui-react';
 import moment from 'moment';
 import CategoryList from './CategoryList';
 
 class PostDetailView extends Component {
-  componentDidMount = () => {
-    this.props.dispatch(getAllPosts());
-  };
-
   render() {
     const { post } = this.props;
 
