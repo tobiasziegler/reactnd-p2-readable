@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllPosts, getAllCategories } from '../actions';
+import { getAllPosts } from '../actions';
 import { Grid, Item } from 'semantic-ui-react';
 import moment from 'moment';
 import CategoryList from './CategoryList';
@@ -8,11 +8,10 @@ import CategoryList from './CategoryList';
 class PostDetailView extends Component {
   componentDidMount = () => {
     this.props.dispatch(getAllPosts());
-    this.props.dispatch(getAllCategories());
   };
 
   render() {
-    const { post, categories } = this.props;
+    const { post } = this.props;
 
     return (
       <Grid>
@@ -40,7 +39,7 @@ class PostDetailView extends Component {
             </Item>
           )}
         </Item.Group>
-        <CategoryList categories={categories} />
+        <CategoryList />
       </Grid>
     );
   }
@@ -50,8 +49,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     post: state.posts.filter(
       post => post.id === ownProps.match.params.post_id
-    )[0],
-    categories: state.categories
+    )[0]
   };
 };
 

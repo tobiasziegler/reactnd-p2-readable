@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getAllCategories } from '../actions';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 
 class CategoryList extends Component {
+  componentDidMount = () => {
+    this.props.dispatch(getAllCategories());
+  };
+
   render() {
     const { categories } = this.props;
 
@@ -21,4 +27,8 @@ class CategoryList extends Component {
   }
 }
 
-export default CategoryList;
+const mapStateToProps = state => {
+  return { categories: state.categories };
+};
+
+export default connect(mapStateToProps)(CategoryList);
