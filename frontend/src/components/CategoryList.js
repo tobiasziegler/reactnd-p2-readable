@@ -15,6 +15,9 @@ class CategoryList extends Component {
     return (
       <Menu vertical>
         <Menu.Header>Categories</Menu.Header>
+        <Menu.Item as={Link} to="/">
+          all categories
+        </Menu.Item>
         {categories &&
           categories.length > 0 &&
           categories.map(category => (
