@@ -46,11 +46,13 @@ class PostDetailView extends Component {
   }
 }
 
-function mapStateToProps({ posts, categories }, { match }) {
+const mapStateToProps = (state, ownProps) => {
   return {
-    post: posts.filter(post => post.id === match.params.post_id)[0],
-    categories
+    post: state.posts.filter(
+      post => post.id === ownProps.match.params.post_id
+    )[0],
+    categories: state.categories
   };
-}
+};
 
 export default connect(mapStateToProps)(PostDetailView);

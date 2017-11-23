@@ -23,11 +23,13 @@ class CategoryView extends Component {
   }
 }
 
-function mapStateToProps({ posts, categories }, { match }) {
+const mapStateToProps = (state, ownProps) => {
   return {
-    posts: posts.filter(post => post.category === match.params.category),
-    categories
+    posts: state.posts.filter(
+      post => post.category === ownProps.match.params.category
+    ),
+    categories: state.categories
   };
-}
+};
 
 export default connect(mapStateToProps)(CategoryView);

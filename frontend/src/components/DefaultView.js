@@ -22,8 +22,8 @@ class DefaultView extends Component {
   }
 }
 
-function mapStateToProps({ posts, categories }) {
-  return { posts, categories };
-}
+const mapStateToProps = state => {
+  return state;
+};
 
 export default connect(mapStateToProps)(DefaultView);
