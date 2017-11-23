@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getComments } from '../actions';
 import { Item } from 'semantic-ui-react';
 import moment from 'moment';
-import CategoryList from './CategoryList';
 import CommentList from './CommentList';
 
 class PostDetailView extends Component {

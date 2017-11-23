@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PostList from './PostList';
-import CategoryList from './CategoryList';
 
 class CategoryView extends Component {
   render() {
