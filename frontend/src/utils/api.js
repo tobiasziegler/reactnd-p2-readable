@@ -13,3 +13,9 @@ export const getAllCategories = () =>
   fetch(`${server}/categories`, { headers: authHeader }).then(response =>
     response.json()
   );
+
+// Get all the comments for a single post
+export const getComments = post_id =>
+  fetch(`${server}/posts/${post_id}/comments`, { headers: authHeader }).then(
+    response => response.json()
+  );
