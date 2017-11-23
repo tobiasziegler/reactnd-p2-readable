@@ -5,7 +5,8 @@ import { withRouter, Route, Link } from 'react-router-dom';
 import DefaultView from './DefaultView';
 import CategoryView from './CategoryView';
 import PostDetailView from './PostDetailView';
-import { Header } from 'semantic-ui-react';
+import CategoryList from './CategoryList';
+import { Header, Grid } from 'semantic-ui-react';
 
 class App extends Component {
   componentDidMount = () => {
@@ -18,9 +19,12 @@ class App extends Component {
         <Header as="h1" block>
           <Link to="/">Readable</Link>
         </Header>
-        <Route exact path="/" component={DefaultView} />
-        <Route exact path="/:category" component={CategoryView} />
-        <Route exact path="/:category/:post_id" component={PostDetailView} />
+        <Grid>
+          <Route exact path="/" component={DefaultView} />
+          <Route exact path="/:category" component={CategoryView} />
+          <Route exact path="/:category/:post_id" component={PostDetailView} />
+          <CategoryList />
+        </Grid>
       </div>
     );
   }
