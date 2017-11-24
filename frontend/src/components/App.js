@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAllPosts } from '../actions';
 import { withRouter, Route, Link } from 'react-router-dom';
-import DefaultView from './DefaultView';
 import CategoryView from './CategoryView';
 import PostDetailView from './PostDetailView';
 import CategoryList from './CategoryList';
@@ -20,7 +19,7 @@ class App extends Component {
           <Link to="/">Readable</Link>
         </Header>
         <Grid>
-          <Route exact path="/" component={DefaultView} />
+          <Route exact path="/" component={CategoryView} />
           <Route exact path="/:category" component={CategoryView} />
           <Route exact path="/:category/:post_id" component={PostDetailView} />
           <CategoryList />
