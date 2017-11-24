@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PostList from './PostList';
+import { Grid } from 'semantic-ui-react';
 
 class PostListView extends Component {
   render() {
     const { posts } = this.props;
 
-    return <PostList posts={posts} />;
+    return (
+      <Grid.Column width={10}>
+        <PostList posts={posts} />
+      </Grid.Column>
+    );
   }
 }
 

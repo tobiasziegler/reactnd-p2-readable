@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Item } from 'semantic-ui-react';
+import { Grid, Item } from 'semantic-ui-react';
 import moment from 'moment';
 import CommentList from './CommentList';
 
@@ -10,7 +10,7 @@ class PostDetailView extends Component {
 
     if (post) {
       return (
-        <div>
+        <Grid.Column width={10}>
           <Item.Group relaxed>
             <Item key={post.id}>
               <Item.Content>
@@ -27,11 +27,11 @@ class PostDetailView extends Component {
             </Item>
           </Item.Group>
           <CommentList post_id={post.id} />
-        </div>
+        </Grid.Column>
       );
     } else {
       return (
-        <div>
+        <Grid.Column width={10}>
           <Item.Group relaxed>
             <Item>
               <Item.Content>
@@ -39,7 +39,7 @@ class PostDetailView extends Component {
               </Item.Content>
             </Item>
           </Item.Group>
-        </div>
+        </Grid.Column>
       );
     }
   }

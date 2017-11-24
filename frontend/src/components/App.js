@@ -5,7 +5,7 @@ import { withRouter, Route, Link } from 'react-router-dom';
 import PostListView from './PostListView';
 import PostDetailView from './PostDetailView';
 import CategoryList from './CategoryList';
-import { Header, Grid } from 'semantic-ui-react';
+import { Container, Header, Grid } from 'semantic-ui-react';
 
 class App extends Component {
   componentDidMount = () => {
@@ -14,17 +14,17 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <Container className="App">
         <Header as="h1" block>
           <Link to="/">Readable</Link>
         </Header>
-        <Grid>
+        <Grid padded stackable>
           <Route exact path="/" component={PostListView} />
           <Route exact path="/:category" component={PostListView} />
           <Route exact path="/:category/:post_id" component={PostDetailView} />
           <CategoryList />
         </Grid>
-      </div>
+      </Container>
     );
   }
 }
