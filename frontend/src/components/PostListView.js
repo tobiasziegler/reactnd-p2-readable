@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PostList from './PostList';
 
-class CategoryView extends Component {
+class PostListView extends Component {
   render() {
     const { posts } = this.props;
 
@@ -20,4 +20,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(CategoryView);
+export default connect(mapStateToProps)(PostListView);

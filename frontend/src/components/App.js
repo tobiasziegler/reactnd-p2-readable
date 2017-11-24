@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAllPosts } from '../actions';
 import { withRouter, Route, Link } from 'react-router-dom';
-import CategoryView from './CategoryView';
+import PostListView from './PostListView';
 import PostDetailView from './PostDetailView';
 import CategoryList from './CategoryList';
 import { Header, Grid } from 'semantic-ui-react';
@@ -19,8 +19,8 @@ class App extends Component {
           <Link to="/">Readable</Link>
         </Header>
         <Grid>
-          <Route exact path="/" component={CategoryView} />
-          <Route exact path="/:category" component={CategoryView} />
+          <Route exact path="/" component={PostListView} />
+          <Route exact path="/:category" component={PostListView} />
           <Route exact path="/:category/:post_id" component={PostDetailView} />
           <CategoryList />
         </Grid>
