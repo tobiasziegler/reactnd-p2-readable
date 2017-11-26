@@ -22,7 +22,7 @@ class App extends Component {
           <Route exact path="/" component={PostListView} />
           <Route exact path="/:category" component={PostListView} />
           <Route exact path="/:category/:post_id" component={PostDetailView} />
-          <CategoryList />
+          <Route path="/" component={CategoryList} />
         </Grid>
       </Container>
     );

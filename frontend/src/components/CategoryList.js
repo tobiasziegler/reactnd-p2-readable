@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAllCategories } from '../actions';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Grid, Menu } from 'semantic-ui-react';
 
 class CategoryList extends Component {
@@ -16,13 +16,17 @@ class CategoryList extends Component {
       <Grid.Column width={6}>
         <Menu vertical fluid>
           <Menu.Item header>Categories</Menu.Item>
-          <Menu.Item as={Link} to="/">
+          <Menu.Item as={NavLink} exact to="/">
             all categories
           </Menu.Item>
           {categories &&
             categories.length > 0 &&
             categories.map(category => (
-              <Menu.Item key={category.path} as={Link} to={`/${category.path}`}>
+              <Menu.Item
+                key={category.path}
+                as={NavLink}
+                to={`/${category.path}`}
+              >
                 {category.name}
               </Menu.Item>
             ))}
