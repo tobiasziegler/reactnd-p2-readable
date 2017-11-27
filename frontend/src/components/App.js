@@ -8,8 +8,6 @@ import CategoryList from './CategoryList';
 import { Container, Header, Grid } from 'semantic-ui-react';
 
 class App extends Component {
-  state = { sortOrder: 'latest' };
-
   componentDidMount = () => {
     this.props.dispatch(getAllPosts());
   };
@@ -21,12 +19,7 @@ class App extends Component {
           <Link to="/">Readable</Link>
         </Header>
         <Grid padded stackable>
-          <Route
-            exact
-            path="/"
-            component={PostListView}
-            sort={this.state.sortOrder}
-          />
+          <Route exact path="/" component={PostListView} />
           <Route exact path="/:category" component={PostListView} />
           <Route exact path="/:category/:post_id" component={PostDetailView} />
           <Route path="/" component={CategoryList} />
