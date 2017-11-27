@@ -4,13 +4,16 @@ import {
   RECEIVE_ALL_POSTS,
   RECEIVE_ALL_CATEGORIES,
   RECEIVE_COMMENTS,
-  SET_SORT_ORDER
+  SET_SORT_ORDER,
+  POST_ADDED
 } from '../actions';
 
 function posts(state = [], action) {
   switch (action.type) {
     case RECEIVE_ALL_POSTS:
       return action.data;
+    case POST_ADDED:
+      return [...state, action.data];
     default:
       return state;
   }

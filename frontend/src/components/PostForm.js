@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addPost } from '../actions';
+import { Redirect } from 'react-router-dom';
 import { Grid, Form, Button } from 'semantic-ui-react';
 import { v4 } from 'uuid';
 
@@ -10,7 +12,8 @@ class PostForm extends Component {
       body: '',
       category: 'react',
       title: ''
-    }
+    },
+    redirect: false
   };
 
   handleChange = (e, v) => {
@@ -29,23 +32,22 @@ class PostForm extends Component {
     const { post } = this.state;
 
     const newPost = {
-      author: post.author,
-      body: post.body,
-      category: post.category,
-      commentCount: 0,
-      deleted: false,
       id: v4(),
       timestamp: Date.now(),
       title: post.title,
-      voteScore: 0
+      body: post.body,
+      author: post.author,
+      category: post.category
     };
 
-    // TODO: Save the new post and update the Redux store
+    this.props.dispatch(addPost(newPost));
+
+    this.setState({ redirect: true });
   };
 
   render() {
     const { categories } = this.props;
-    const { post } = this.state;
+    const { post, redirect } = this.state;
 
     return (
       <Grid.Column width={10}>
@@ -85,6 +87,7 @@ class PostForm extends Component {
           />
           <Button type="submit">Submit</Button>
         </Form>
+        {redirect && <Redirect to="/" />}
       </Grid.Column>
     );
   }

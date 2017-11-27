@@ -19,3 +19,11 @@ export const getComments = post_id =>
   fetch(`${server}/posts/${post_id}/comments`, { headers: authHeader }).then(
     response => response.json()
   );
+
+// Add a new post
+export const addPost = post =>
+  fetch(`${server}/posts`, {
+    headers: { ...authHeader, 'Content-Type': 'application/json' },
+    method: 'POST',
+    body: JSON.stringify(post)
+  }).then(response => response.json());
