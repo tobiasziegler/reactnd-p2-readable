@@ -38,3 +38,11 @@ export const updatePost = post =>
     method: 'PUT',
     body: JSON.stringify(post)
   }).then(response => response.json());
+
+// Sets the deleted flag for a post to 'true'.
+// Sets the parentDeleted flag for all child comments to 'true'.
+export const deletePost = post =>
+  fetch(`${server}/posts/${post.id}`, {
+    headers: authHeader,
+    method: 'DELETE'
+  }).then(response => response.json());

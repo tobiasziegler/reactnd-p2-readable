@@ -6,6 +6,7 @@ export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const SET_SORT_ORDER = 'SET_SORT_ORDER';
 export const POST_ADDED = 'POST_ADDED';
 export const POST_UPDATED = 'POST_UPDATED';
+export const POST_DELETED = 'POST_DELETED';
 
 export const receiveAllPosts = data => ({ type: RECEIVE_ALL_POSTS, data });
 
@@ -45,3 +46,8 @@ export const postUpdated = data => ({
 
 export const updatePost = post => dispatch =>
   API.updatePost(post).then(data => dispatch(postUpdated(data)));
+
+export const postDeleted = data => ({ type: POST_DELETED, data });
+
+export const deletePost = post => dispatch =>
+  API.deletePost(post).then(data => dispatch(postDeleted(data)));

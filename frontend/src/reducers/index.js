@@ -6,7 +6,8 @@ import {
   RECEIVE_COMMENTS,
   SET_SORT_ORDER,
   POST_ADDED,
-  POST_UPDATED
+  POST_UPDATED,
+  POST_DELETED
 } from '../actions';
 
 function posts(state = [], action) {
@@ -19,6 +20,8 @@ function posts(state = [], action) {
       return state.map(
         post => (post.id === action.data.id ? action.data : post)
       );
+    case POST_DELETED:
+      return state.filter(post => post.id !== action.data.id);
     default:
       return state;
   }

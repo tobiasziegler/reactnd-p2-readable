@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Grid, Item, Label, Menu } from 'semantic-ui-react';
+import { deletePost } from '../actions';
+import { Link, Redirect } from 'react-router-dom';
+import { Grid, Item, Label, Menu, Modal, Button } from 'semantic-ui-react';
 import moment from 'moment';
 import CommentList from './CommentList';
 
 class PostDetailView extends Component {
+  state = { modalOpen: false, redirect: false };
+
+  handleModalOpen = () => this.setState({ modalOpen: true });
+
+  handleModalDelete = () => {
+    this.props.dispatch(deletePost(this.props.post));
+
+    this.setState({ modalOpen: false, redirect: true });
+  };
+
+  handleModalCancel = () => this.setState({ modalOpen: false });
+
   render() {
     const { post } = this.props;
+    const { redirect } = this.state;
 
     if (post) {
       return (
@@ -32,12 +46,31 @@ class PostDetailView extends Component {
                     >
                       Edit Post
                     </Menu.Item>
+                    <Modal
+                      trigger={
+                        <Menu.Item onClick={this.handleModalOpen}>
+                          Delete Post
+                        </Menu.Item>
+                      }
+                      open={this.state.modalOpen}
+                      onClose={this.handleModalCancel}
+                    >
+                      <Modal.Header>Delete Post</Modal.Header>
+                      <Modal.Content>
+                        Are you sure you want to delete this post?
+                      </Modal.Content>
+                      <Modal.Actions>
+                        <Button onClick={this.handleModalDelete}>Delete</Button>
+                        <Button onClick={this.handleModalCancel}>Cancel</Button>
+                      </Modal.Actions>
+                    </Modal>
                   </Menu>
                 </Item.Extra>
               </Item.Content>
             </Item>
           </Item.Group>
           <CommentList post_id={post.id} />
+          {redirect && <Redirect to="/" />}
         </Grid.Column>
       );
     } else {
