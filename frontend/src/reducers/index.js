@@ -3,7 +3,8 @@ import { combineReducers } from 'redux';
 import {
   RECEIVE_ALL_POSTS,
   RECEIVE_ALL_CATEGORIES,
-  RECEIVE_COMMENTS
+  RECEIVE_COMMENTS,
+  SET_SORT_ORDER
 } from '../actions';
 
 function posts(state = [], action) {
@@ -33,8 +34,18 @@ function comments(state = [], action) {
   }
 }
 
+function sortOrder(state = 'latest', action) {
+  switch (action.type) {
+    case SET_SORT_ORDER:
+      return action.sortOrder;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   posts: posts,
   categories: categories,
-  comments: comments
+  comments: comments,
+  sortOrder: sortOrder
 });
