@@ -27,3 +27,14 @@ export const addPost = post =>
     method: 'POST',
     body: JSON.stringify(post)
   }).then(response => response.json());
+
+// Edit the details of an existing post
+export const updatePost = post =>
+  fetch(`${server}/posts/${post.id}`, {
+    headers: {
+      ...authHeader,
+      'Content-Type': 'application/json'
+    },
+    method: 'PUT',
+    body: JSON.stringify(post)
+  }).then(response => response.json());

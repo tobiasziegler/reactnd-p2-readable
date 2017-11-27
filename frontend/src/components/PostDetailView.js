@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Item } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Grid, Item, Label, Menu } from 'semantic-ui-react';
 import moment from 'moment';
 import CommentList from './CommentList';
 
@@ -21,7 +22,17 @@ class PostDetailView extends Component {
                   {post.category}
                 </Item.Meta>
                 <Item.Extra>
-                  Votes: {post.voteScore} | Comments: {post.commentCount}
+                  <Label floated="left">
+                    Votes: {post.voteScore} | Comments: {post.commentCount}
+                  </Label>
+                  <Menu size="mini" floated="right">
+                    <Menu.Item
+                      as={Link}
+                      to={`/${post.category}/${post.id}/edit`}
+                    >
+                      Edit Post
+                    </Menu.Item>
+                  </Menu>
                 </Item.Extra>
               </Item.Content>
             </Item>

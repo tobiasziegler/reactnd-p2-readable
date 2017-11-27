@@ -34,6 +34,7 @@ class App extends Component {
               path="/:category/:post_id"
               component={PostDetailView}
             />
+            <Route exact path="/:category/:post_id/edit" component={PostForm} />
           </Switch>
           <Route path="/" component={CategoryList} />
         </Grid>

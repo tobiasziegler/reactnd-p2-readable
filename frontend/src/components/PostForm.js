@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addPost } from '../actions';
+import { addPost, updatePost } from '../actions';
 import { Redirect } from 'react-router-dom';
 import { Grid, Form, Button } from 'semantic-ui-react';
 import { v4 } from 'uuid';
 
 class PostForm extends Component {
   state = {
+    // Set state based on existing post, or set basic defaults for a new post
     post: {
-      author: '',
-      body: '',
-      category: 'react',
-      title: ''
+      author: this.props.post ? this.props.post.author : '',
+      body: this.props.post ? this.props.post.body : '',
+      category: this.props.post ? this.props.post.category : 'react',
+      title: this.props.post ? this.props.post.title : ''
     },
     redirect: false
   };
@@ -31,16 +32,30 @@ class PostForm extends Component {
 
     const { post } = this.state;
 
-    const newPost = {
-      id: v4(),
-      timestamp: Date.now(),
-      title: post.title,
-      body: post.body,
-      author: post.author,
-      category: post.category
-    };
+    // Check whether editing a post or creating a new one, then create or update it
+    if (this.props.post) {
+      const updatedPost = {
+        ...this.props.post,
+        timestamp: Date.now(),
+        title: post.title,
+        author: post.author,
+        body: post.body,
+        category: post.category
+      };
 
-    this.props.dispatch(addPost(newPost));
+      this.props.dispatch(updatePost(updatedPost));
+    } else {
+      const newPost = {
+        id: v4(),
+        timestamp: Date.now(),
+        title: post.title,
+        body: post.body,
+        author: post.author,
+        category: post.category
+      };
+
+      this.props.dispatch(addPost(newPost));
+    }
 
     this.setState({ redirect: true });
   };
@@ -93,11 +108,15 @@ class PostForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     categories: state.categories.map(category => {
       return { text: category.name, value: category.path };
-    })
+    }),
+    // If editing an existing post, retrieve it based on the ID in the URL
+    post: state.posts.filter(
+      post => post.id === ownProps.match.params.post_id
+    )[0]
   };
 };
 
