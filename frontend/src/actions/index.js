@@ -9,6 +9,7 @@ export const POST_UPDATED = 'POST_UPDATED';
 export const POST_DELETED = 'POST_DELETED';
 export const COMMENT_ADDED = 'COMMENT_ADDED';
 export const COMMENT_DELETED = 'COMMENT_DELETED';
+export const COMMENT_UPDATED = 'COMMENT_UPDATED';
 
 export const receiveAllPosts = data => ({ type: RECEIVE_ALL_POSTS, data });
 
@@ -58,6 +59,11 @@ export const commentAdded = data => ({ type: COMMENT_ADDED, data });
 
 export const addComment = comment => dispatch =>
   API.addComment(comment).then(data => dispatch(commentAdded(data)));
+
+export const commentUpdated = data => ({ type: COMMENT_UPDATED, data });
+
+export const updateComment = comment => dispatch =>
+  API.updateComment(comment).then(data => dispatch(commentUpdated(data)));
 
 export const commentDeleted = data => ({ type: COMMENT_DELETED, data });
 

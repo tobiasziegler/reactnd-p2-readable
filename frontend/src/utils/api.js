@@ -55,6 +55,17 @@ export const addComment = comment =>
     body: JSON.stringify(comment)
   }).then(response => response.json());
 
+// Edit the details of an existing comment
+export const updateComment = comment =>
+  fetch(`${server}/comments/${comment.id}`, {
+    headers: {
+      ...authHeader,
+      'Content-Type': 'application/json'
+    },
+    method: 'PUT',
+    body: JSON.stringify(comment)
+  }).then(response => response.json());
+
 // Sets a comment's deleted flag to 'true'
 export const deleteComment = comment =>
   fetch(`${server}/comments/${comment.id}`, {

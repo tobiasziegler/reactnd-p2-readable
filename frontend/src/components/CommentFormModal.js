@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addComment } from '../actions';
-import { Modal, Form, Button } from 'semantic-ui-react';
+import { addComment, updateComment } from '../actions';
+import { Modal, Form, Button, Menu } from 'semantic-ui-react';
 import { v4 } from 'uuid';
 
 class CommentFormModal extends Component {
   state = {
+    // Set state based on existing comment, or set basic defaults for a new comment
     comment: {
-      author: '',
-      body: ''
+      author: this.props.comment ? this.props.comment.author : '',
+      body: this.props.comment ? this.props.comment.body : ''
     },
     modalOpen: false
   };
@@ -20,15 +21,27 @@ class CommentFormModal extends Component {
 
     const { comment } = this.state;
 
-    const newComment = {
-      id: v4(),
-      timestamp: Date.now(),
-      body: comment.body,
-      author: comment.author,
-      parentId: this.props.post_id
-    };
+    // Check whether editing a comment or creating a new one, then create or update it
+    if (this.props.comment) {
+      const updatedComment = {
+        ...this.props.comment,
+        timestamp: Date.now(),
+        author: comment.author,
+        body: comment.body
+      };
 
-    this.props.dispatch(addComment(newComment));
+      this.props.dispatch(updateComment(updatedComment));
+    } else {
+      const newComment = {
+        id: v4(),
+        timestamp: Date.now(),
+        body: comment.body,
+        author: comment.author,
+        parentId: this.props.post_id
+      };
+
+      this.props.dispatch(addComment(newComment));
+    }
 
     // Reset the comment form after submission
     this.setState({
@@ -40,14 +53,17 @@ class CommentFormModal extends Component {
     this.setState({ modalOpen: false });
   };
 
-  handleModalCancel = () =>
+  handleModalCancel = e => {
+    e.preventDefault();
+
     this.setState({
       comment: {
-        author: '',
-        body: ''
+        author: this.props.comment ? this.props.comment.author : '',
+        body: this.props.comment ? this.props.comment.body : ''
       },
       modalOpen: false
     });
+  };
 
   handleChange = (e, v) => {
     // https://stackoverflow.com/questions/43638938/updating-an-object-with-setstate-in-react
@@ -59,20 +75,34 @@ class CommentFormModal extends Component {
     }));
   };
 
+  // Used in rendering for clarity - if a comment has been passed via props, this is an edit post form
+  isNewComment = () => {
+    return this.props.comment ? false : true;
+  };
+
   render() {
     const { comment } = this.state;
+    const newComment = this.isNewComment();
 
     return (
       <Modal
         trigger={
-          <Button size="tiny" onClick={this.handleModalOpen}>
-            Add a Comment
-          </Button>
+          newComment ? (
+            <Button size="tiny" onClick={this.handleModalOpen}>
+              Add a Comment
+            </Button>
+          ) : (
+            <Menu.Item onClick={this.handleModalOpen}>Edit Comment</Menu.Item>
+          )
         }
         open={this.state.modalOpen}
         onClose={this.handleModalCancel}
       >
-        <Modal.Header>Add a Comment</Modal.Header>
+        {newComment ? (
+          <Modal.Header>Add a Comment</Modal.Header>
+        ) : (
+          <Modal.Header>Edit Comment</Modal.Header>
+        )}
         <Modal.Content>
           <Form onSubmit={this.handleModalSubmit} size="mini">
             <Form.Input

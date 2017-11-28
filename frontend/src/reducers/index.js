@@ -9,6 +9,7 @@ import {
   POST_UPDATED,
   POST_DELETED,
   COMMENT_ADDED,
+  COMMENT_UPDATED,
   COMMENT_DELETED
 } from '../actions';
 
@@ -44,6 +45,10 @@ function comments(state = [], action) {
       return action.data;
     case COMMENT_ADDED:
       return [...state, action.data];
+    case COMMENT_UPDATED:
+      return state.map(
+        comment => (comment.id === action.data.id ? action.data : comment)
+      );
     case COMMENT_DELETED:
       return state.filter(comment => comment.id !== action.data.id);
     default:

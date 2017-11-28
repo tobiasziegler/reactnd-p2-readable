@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Comment, Menu } from 'semantic-ui-react';
 import moment from 'moment';
+import CommentFormModal from './CommentFormModal';
 import CommentDeleteModal from './CommentDeleteModal';
 
 class CommentView extends Component {
@@ -17,6 +18,7 @@ class CommentView extends Component {
           </Comment.Metadata>
           <Comment.Text>{comment.body}</Comment.Text>
           <Menu size="mini" compact>
+            <CommentFormModal comment={comment} />
             <CommentDeleteModal comment={comment} />
           </Menu>
         </Comment.Content>
