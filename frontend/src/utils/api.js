@@ -54,3 +54,10 @@ export const addComment = comment =>
     method: 'POST',
     body: JSON.stringify(comment)
   }).then(response => response.json());
+
+// Sets a comment's deleted flag to 'true'
+export const deleteComment = comment =>
+  fetch(`${server}/comments/${comment.id}`, {
+    headers: authHeader,
+    method: 'DELETE'
+  }).then(response => response.json());
