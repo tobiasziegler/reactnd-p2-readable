@@ -4,7 +4,7 @@ import { addComment } from '../actions';
 import { Form, Divider, Header, Button } from 'semantic-ui-react';
 import { v4 } from 'uuid';
 
-class CommentForm extends Component {
+class CommentFormModal extends Component {
   state = {
     comment: {
       author: '',
@@ -75,4 +75,4 @@ class CommentForm extends Component {
   }
 }
 
-export default connect()(CommentForm);
+export default connect()(CommentFormModal);

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getComments } from '../actions';
 import { Header, Comment } from 'semantic-ui-react';
 import CommentView from './CommentView';
-import CommentForm from './CommentForm';
+import CommentFormModal from './CommentFormModal';
 
 class CommentList extends Component {
   componentDidMount = () => {
@@ -30,7 +30,7 @@ class CommentList extends Component {
             </Comment.Content>
           </Comment>
         )}
-        <CommentForm post_id={post_id} />
+        <CommentFormModal post_id={post_id} />
       </Comment.Group>
     );
   }
