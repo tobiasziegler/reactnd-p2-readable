@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getComments } from '../actions';
-import { Header, Comment } from 'semantic-ui-react';
+import { Header, Comment, Divider } from 'semantic-ui-react';
 import CommentView from './CommentView';
 import CommentFormModal from './CommentFormModal';
 
@@ -30,6 +30,7 @@ class CommentList extends Component {
             </Comment.Content>
           </Comment>
         )}
+        <Divider />
         <CommentFormModal post_id={post_id} />
       </Comment.Group>
     );
