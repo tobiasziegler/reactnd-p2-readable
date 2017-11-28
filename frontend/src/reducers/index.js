@@ -7,7 +7,8 @@ import {
   SET_SORT_ORDER,
   POST_ADDED,
   POST_UPDATED,
-  POST_DELETED
+  POST_DELETED,
+  COMMENT_ADDED
 } from '../actions';
 
 function posts(state = [], action) {
@@ -40,6 +41,8 @@ function comments(state = [], action) {
   switch (action.type) {
     case RECEIVE_COMMENTS:
       return action.data;
+    case COMMENT_ADDED:
+      return [...state, action.data];
     default:
       return state;
   }

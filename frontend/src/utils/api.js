@@ -46,3 +46,11 @@ export const deletePost = post =>
     headers: authHeader,
     method: 'DELETE'
   }).then(response => response.json());
+
+// Add a comment to a post
+export const addComment = comment =>
+  fetch(`${server}/comments`, {
+    headers: { ...authHeader, 'Content-Type': 'application/json' },
+    method: 'POST',
+    body: JSON.stringify(comment)
+  }).then(response => response.json());
