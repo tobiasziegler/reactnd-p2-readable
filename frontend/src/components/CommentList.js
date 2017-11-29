@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getComments } from '../actions';
+import { getComments, voteComment } from '../actions';
 import { Header, Comment, Divider } from 'semantic-ui-react';
 import CommentView from './CommentView';
 import CommentFormModal from './CommentFormModal';
@@ -9,6 +9,9 @@ class CommentList extends Component {
   componentDidMount = () => {
     this.props.dispatch(getComments(this.props.post_id));
   };
+
+  handleVote = (comment, vote) =>
+    this.props.dispatch(voteComment(comment, vote));
 
   render() {
     const { comments, post_id } = this.props;
@@ -19,7 +22,11 @@ class CommentList extends Component {
         {comments &&
           comments.length > 0 &&
           comments.map(comment => (
-            <CommentView comment={comment} key={comment.id} />
+            <CommentView
+              comment={comment}
+              handleVote={this.handleVote}
+              key={comment.id}
+            />
           ))}
         {(!comments || comments.length === 0) && (
           <Comment>

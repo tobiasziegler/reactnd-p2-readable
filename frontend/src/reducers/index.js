@@ -11,7 +11,8 @@ import {
   COMMENT_ADDED,
   COMMENT_UPDATED,
   COMMENT_DELETED,
-  POST_VOTED
+  POST_VOTED,
+  COMMENT_VOTED
 } from '../actions';
 
 function posts(state = [], action) {
@@ -48,6 +49,7 @@ function comments(state = [], action) {
     case COMMENT_ADDED:
       return [...state, action.data];
     case COMMENT_UPDATED:
+    case COMMENT_VOTED:
       return state.map(
         comment => (comment.id === action.data.id ? action.data : comment)
       );

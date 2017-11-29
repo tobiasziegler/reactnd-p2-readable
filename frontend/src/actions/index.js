@@ -11,6 +11,7 @@ export const COMMENT_ADDED = 'COMMENT_ADDED';
 export const COMMENT_DELETED = 'COMMENT_DELETED';
 export const COMMENT_UPDATED = 'COMMENT_UPDATED';
 export const POST_VOTED = 'POST_VOTED';
+export const COMMENT_VOTED = 'COMMENT_VOTED';
 
 export const receiveAllPosts = data => ({ type: RECEIVE_ALL_POSTS, data });
 
@@ -75,3 +76,8 @@ export const postVoted = data => ({ type: POST_VOTED, data });
 
 export const votePost = (post, vote) => dispatch =>
   API.votePost(post, vote).then(data => dispatch(postVoted(data)));
+
+export const commentVoted = data => ({ type: COMMENT_VOTED, data });
+
+export const voteComment = (comment, vote) => dispatch =>
+  API.voteComment(comment, vote).then(data => dispatch(commentVoted(data)));

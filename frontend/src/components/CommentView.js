@@ -4,10 +4,11 @@ import { Comment, Menu } from 'semantic-ui-react';
 import moment from 'moment';
 import CommentFormModal from './CommentFormModal';
 import CommentDeleteModal from './CommentDeleteModal';
+import Votes from './Votes';
 
 class CommentView extends Component {
   render() {
-    const { comment } = this.props;
+    const { comment, handleVote } = this.props;
 
     return (
       <Comment>
@@ -17,6 +18,7 @@ class CommentView extends Component {
             {moment(comment.timestamp).fromNow()}
           </Comment.Metadata>
           <Comment.Text>{comment.body}</Comment.Text>
+          <Votes item={comment} handleVote={handleVote} />
           <Menu size="mini" compact>
             <CommentFormModal comment={comment} />
             <CommentDeleteModal comment={comment} />

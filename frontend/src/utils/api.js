@@ -83,3 +83,14 @@ export const votePost = (post, vote) =>
     method: 'POST',
     body: JSON.stringify({ option: vote })
   }).then(response => response.json());
+
+// Used for voting on a comment
+export const voteComment = (comment, vote) =>
+  fetch(`${server}/comments/${comment.id}`, {
+    headers: {
+      ...authHeader,
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({ option: vote })
+  }).then(response => response.json());
