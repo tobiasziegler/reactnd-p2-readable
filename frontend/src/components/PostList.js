@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Item } from 'semantic-ui-react';
 import moment from 'moment';
+import Votes from './Votes';
 
 class PostList extends Component {
   render() {
-    const { posts } = this.props;
+    const { posts, handleVote } = this.props;
 
     return (
       <Item.Group relaxed>
@@ -22,7 +23,8 @@ class PostList extends Component {
                   {post.category}
                 </Item.Meta>
                 <Item.Extra>
-                  Votes: {post.voteScore} | Comments: {post.commentCount}
+                  <Votes item={post} handleVote={handleVote} />
+                  Comments: {post.commentCount}
                 </Item.Extra>
               </Item.Content>
             </Item>

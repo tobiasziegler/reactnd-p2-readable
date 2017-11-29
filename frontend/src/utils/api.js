@@ -72,3 +72,14 @@ export const deleteComment = comment =>
     headers: authHeader,
     method: 'DELETE'
   }).then(response => response.json());
+
+// Used for voting on a post
+export const votePost = (post, vote) =>
+  fetch(`${server}/posts/${post.id}`, {
+    headers: {
+      ...authHeader,
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({ option: vote })
+  }).then(response => response.json());

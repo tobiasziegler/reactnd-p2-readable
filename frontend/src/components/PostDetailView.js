@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deletePost } from '../actions';
+import { deletePost, votePost } from '../actions';
 import { Link, Redirect } from 'react-router-dom';
 import { Grid, Item, Label, Menu, Modal, Button } from 'semantic-ui-react';
 import moment from 'moment';
 import CommentList from './CommentList';
+import Votes from './Votes';
 
 class PostDetailView extends Component {
   state = { modalOpen: false, redirect: false };
@@ -18,6 +19,8 @@ class PostDetailView extends Component {
   };
 
   handleModalCancel = () => this.setState({ modalOpen: false });
+
+  handleVote = (post, vote) => this.props.dispatch(votePost(post, vote));
 
   render() {
     const { post } = this.props;
@@ -36,9 +39,8 @@ class PostDetailView extends Component {
                   {post.category}
                 </Item.Meta>
                 <Item.Extra>
-                  <Label floated="left">
-                    Votes: {post.voteScore} | Comments: {post.commentCount}
-                  </Label>
+                  <Votes item={post} handleVote={this.handleVote} />
+                  <Label floated="left">Comments: {post.commentCount}</Label>
                   <Menu size="mini" floated="right">
                     <Menu.Item
                       as={Link}

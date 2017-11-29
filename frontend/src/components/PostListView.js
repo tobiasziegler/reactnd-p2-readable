@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setSortOrder } from '../actions';
+import { setSortOrder, votePost } from '../actions';
 import PostList from './PostList';
 import { Grid, Menu } from 'semantic-ui-react';
 import { sortByOrder } from '../utils/sort';
 
 class PostListView extends Component {
   handleSortClick = (e, { name }) => this.props.dispatch(setSortOrder(name));
+  handleVote = (post, vote) => this.props.dispatch(votePost(post, vote));
 
   render() {
     const { posts, sortOrder } = this.props;
@@ -30,7 +31,7 @@ class PostListView extends Component {
             Most Popular
           </Menu.Item>
         </Menu>
-        <PostList posts={posts} />
+        <PostList posts={posts} handleVote={this.handleVote} />
       </Grid.Column>
     );
   }
