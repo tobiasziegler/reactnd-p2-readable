@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Item, Label, Icon } from 'semantic-ui-react';
-import moment from 'moment';
-import Votes from './Votes';
+import { Item } from 'semantic-ui-react';
+import PostSummaryView from './PostSummaryView';
 
 class PostList extends Component {
   render() {
@@ -13,23 +11,11 @@ class PostList extends Component {
         {posts &&
           posts.length > 0 &&
           posts.map(post => (
-            <Item key={post.id}>
-              <Item.Content>
-                <Item.Header as={Link} to={`/${post.category}/${post.id}`}>
-                  {post.title}
-                </Item.Header>
-                <Item.Meta>
-                  {moment(post.timestamp).fromNow()} by {post.author} in{' '}
-                  {post.category}
-                </Item.Meta>
-                <Item.Extra>
-                  <Votes item={post} handleVote={handleVote} />
-                  <Label>
-                    <Icon name="comments" /> {post.commentCount}
-                  </Label>
-                </Item.Extra>
-              </Item.Content>
-            </Item>
+            <PostSummaryView
+              key={post.id}
+              post={post}
+              handleVote={handleVote}
+            />
           ))}
         {(!posts || posts.length === 0) && (
           <Item>
