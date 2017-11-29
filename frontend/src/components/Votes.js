@@ -7,13 +7,10 @@ class Votes extends Component {
 
     return (
       <Button.Group size="tiny">
-        <Button
-          icon="thumbs up icon"
-          onClick={() => handleVote(item, 'upVote')}
-        />
+        <Button icon="thumbs up" onClick={() => handleVote(item, 'upVote')} />
         <Button>{item.voteScore}</Button>
         <Button
-          icon="thumbs down icon"
+          icon="thumbs down"
           onClick={() => handleVote(item, 'downVote')}
         />
       </Button.Group>
