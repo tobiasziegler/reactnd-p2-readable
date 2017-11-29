@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Comment, Menu } from 'semantic-ui-react';
 import moment from 'moment';
 import CommentFormModal from './CommentFormModal';
@@ -29,4 +28,4 @@ class CommentView extends Component {
   }
 }
 
-export default connect()(CommentView);
+export default CommentView;
