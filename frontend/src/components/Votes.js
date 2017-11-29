@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import { Button, Segment } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 
 class Votes extends Component {
   render() {
     const { item, handleVote } = this.props;
 
     return (
-      <div>
-        <Button attached="top" onClick={() => handleVote(item, 'upVote')}>
-          UpVote
-        </Button>
-        <Segment attached>{item.voteScore}</Segment>
-        <Button attached="bottom" onClick={() => handleVote(item, 'downVote')}>
-          DownVote
-        </Button>
-      </div>
+      <Button.Group size="tiny">
+        <Button
+          icon="thumbs up icon"
+          onClick={() => handleVote(item, 'upVote')}
+        />
+        <Button>{item.voteScore}</Button>
+        <Button
+          icon="thumbs down icon"
+          onClick={() => handleVote(item, 'downVote')}
+        />
+      </Button.Group>
     );
   }
 }

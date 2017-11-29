@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addComment, updateComment } from '../actions';
-import { Modal, Form, Button, Menu } from 'semantic-ui-react';
+import { Modal, Form, Button } from 'semantic-ui-react';
 import { v4 } from 'uuid';
 
 class CommentFormModal extends Component {
@@ -92,7 +92,7 @@ class CommentFormModal extends Component {
               Add a Comment
             </Button>
           ) : (
-            <Menu.Item onClick={this.handleModalOpen}>Edit Comment</Menu.Item>
+            <Button icon="edit" content="Edit" onClick={this.handleModalOpen} />
           )
         }
         open={this.state.modalOpen}

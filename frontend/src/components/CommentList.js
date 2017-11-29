@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getComments, voteComment } from '../actions';
-import { Header, Comment, Divider } from 'semantic-ui-react';
+import { Comment, Divider } from 'semantic-ui-react';
 import CommentView from './CommentView';
 import CommentFormModal from './CommentFormModal';
 
@@ -18,7 +18,6 @@ class CommentList extends Component {
 
     return (
       <Comment.Group>
-        <Header>Comments</Header>
         {comments &&
           comments.length > 0 &&
           comments.map(comment => (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Comment, Menu } from 'semantic-ui-react';
+import { Comment, Button } from 'semantic-ui-react';
 import moment from 'moment';
 import CommentFormModal from './CommentFormModal';
 import CommentDeleteModal from './CommentDeleteModal';
@@ -18,10 +18,10 @@ class CommentView extends Component {
           </Comment.Metadata>
           <Comment.Text>{comment.body}</Comment.Text>
           <Votes item={comment} handleVote={handleVote} />
-          <Menu size="mini" compact>
+          <Button.Group size="mini" floated="right">
             <CommentFormModal comment={comment} />
             <CommentDeleteModal comment={comment} />
-          </Menu>
+          </Button.Group>
         </Comment.Content>
       </Comment>
     );

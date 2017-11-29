@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Item } from 'semantic-ui-react';
+import { Item, Label, Icon } from 'semantic-ui-react';
 import moment from 'moment';
 import Votes from './Votes';
 
@@ -24,7 +24,9 @@ class PostList extends Component {
                 </Item.Meta>
                 <Item.Extra>
                   <Votes item={post} handleVote={handleVote} />
-                  Comments: {post.commentCount}
+                  <Label>
+                    <Icon name="comments" /> {post.commentCount}
+                  </Label>
                 </Item.Extra>
               </Item.Content>
             </Item>

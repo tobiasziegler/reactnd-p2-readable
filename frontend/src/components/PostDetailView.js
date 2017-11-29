@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deletePost, votePost } from '../actions';
 import { Link, Redirect } from 'react-router-dom';
-import { Grid, Item, Label, Menu, Modal, Button } from 'semantic-ui-react';
+import {
+  Grid,
+  Header,
+  Item,
+  Label,
+  Modal,
+  Button,
+  Icon
+} from 'semantic-ui-react';
 import moment from 'moment';
 import CommentList from './CommentList';
 import Votes from './Votes';
@@ -40,19 +48,23 @@ class PostDetailView extends Component {
                 </Item.Meta>
                 <Item.Extra>
                   <Votes item={post} handleVote={this.handleVote} />
-                  <Label floated="left">Comments: {post.commentCount}</Label>
-                  <Menu size="mini" floated="right">
-                    <Menu.Item
+                  <Label>
+                    <Icon name="comments" /> {post.commentCount}
+                  </Label>
+                  <Button.Group size="mini" floated="right">
+                    <Button
+                      icon="edit"
+                      content="Edit"
                       as={Link}
                       to={`/${post.category}/${post.id}/edit`}
-                    >
-                      Edit Post
-                    </Menu.Item>
+                    />
                     <Modal
                       trigger={
-                        <Menu.Item onClick={this.handleModalOpen}>
-                          Delete Post
-                        </Menu.Item>
+                        <Button
+                          icon="trash"
+                          content="Delete"
+                          onClick={this.handleModalOpen}
+                        />
                       }
                       open={this.state.modalOpen}
                       onClose={this.handleModalCancel}
@@ -66,11 +78,12 @@ class PostDetailView extends Component {
                         <Button onClick={this.handleModalCancel}>Cancel</Button>
                       </Modal.Actions>
                     </Modal>
-                  </Menu>
+                  </Button.Group>
                 </Item.Extra>
               </Item.Content>
             </Item>
           </Item.Group>
+          <Header>Comments</Header>
           <CommentList post_id={post.id} />
           {redirect && <Redirect to="/" />}
         </Grid.Column>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteComment } from '../actions';
-import { Menu, Modal, Button } from 'semantic-ui-react';
+import { Modal, Button } from 'semantic-ui-react';
 
 class CommentDeleteModal extends Component {
   state = { modalOpen: false };
@@ -20,7 +20,11 @@ class CommentDeleteModal extends Component {
     return (
       <Modal
         trigger={
-          <Menu.Item onClick={this.handleModalOpen}>Delete Comment</Menu.Item>
+          <Button
+            icon="trash"
+            content="Delete"
+            onClick={this.handleModalOpen}
+          />
         }
         open={this.state.modalOpen}
         onClose={this.handleModalCancel}
